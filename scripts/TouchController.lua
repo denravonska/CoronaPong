@@ -20,17 +20,7 @@ local function onTouchEvent(event)
          end
       end
    elseif event.phase == "moved" and controlledEntity.isFocus == true then
-      local y = event.y - offsetY
-
-      -- Limit the pad location so we don't go outside of the screen.
-      if y < 1 then
-         y = 1
-      elseif y + controlledEntity.height > display.contentHeight then
-         y = display.contentHeight - controlledEntity.height - 1
-      end
-         
-      controlledEntity.y = y
-      
+      controlledEntity.y = event.y - offsetY
    elseif event.phase == "ended" or event.phase == "cancelled" then
       controlledEntity.isFocus = false
    end
