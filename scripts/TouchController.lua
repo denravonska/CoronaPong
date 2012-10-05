@@ -9,7 +9,6 @@ local offsetY = 0
 -- the left or right of the paddle location we start controlling it until
 -- release.
 local function onTouchEvent(event)
-   
    if event.phase == "began" then
       -- Start dragging if we are close to the entity
       local bounds = controlledEntity.contentBounds
@@ -21,7 +20,17 @@ local function onTouchEvent(event)
          end
       end
    elseif event.phase == "moved" and controlledEntity.isFocus == true then
-      controlledEntity.y = event.y - offsetY
+      local y = event.y - offsetY
+
+      -- Limit the pad location so we don't go outside of the screen.
+      if y < 1 then
+         y = 1
+      elseif y + controlledEntity.height > display.contentHeight then
+         y = display.contentHeight - controlledEntity.height - 1
+      end
+         
+      controlledEntity.y = y
+      
    elseif event.phase == "ended" or event.phase == "cancelled" then
       controlledEntity.isFocus = false
    end
