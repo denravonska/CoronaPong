@@ -9,25 +9,25 @@ local offsetY = 0
 -- the left or right of the paddle location we start controlling it until
 -- release.
 local function onTouchEvent(event)
-	
-	if event.phase == "began" then
-		-- Start dragging if we are close to the entity
-		local bounds = controlledEntity.contentBounds
-		if event.y >= bounds.yMin and event.y <= bounds.yMax then
-			local threshold = controlledEntity.width
-			if event.x >= bounds.xMin - threshold and event.x < bounds.xMax + threshold then
-				controlledEntity.isFocus = true
-				offsetY = event.y - controlledEntity.y
-			end
-		end
-	elseif event.phase == "moved" and controlledEntity.isFocus == true then
-		controlledEntity.y = event.y - offsetY
-	elseif event.phase == "ended" or event.phase == "cancelled" then
-		controlledEntity.isFocus = false
-	end
+   
+   if event.phase == "began" then
+      -- Start dragging if we are close to the entity
+      local bounds = controlledEntity.contentBounds
+      if event.y >= bounds.yMin and event.y <= bounds.yMax then
+         local threshold = controlledEntity.width
+         if event.x >= bounds.xMin - threshold and event.x < bounds.xMax + threshold then
+            controlledEntity.isFocus = true
+            offsetY = event.y - controlledEntity.y
+         end
+      end
+   elseif event.phase == "moved" and controlledEntity.isFocus == true then
+      controlledEntity.y = event.y - offsetY
+   elseif event.phase == "ended" or event.phase == "cancelled" then
+      controlledEntity.isFocus = false
+   end
 end
 
 function newTouchController(entity)
-	controlledEntity = entity
-	Runtime:addEventListener("touch", onTouchEvent)
+   controlledEntity = entity
+   Runtime:addEventListener("touch", onTouchEvent)
 end
