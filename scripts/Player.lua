@@ -1,2 +1,1 @@
-function create()
-end
+module(..., package.seeall)
