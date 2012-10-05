@@ -1,4 +1,4 @@
-require "CiderDebugger";
+
 local physics = require("physics")
 local player = require("scripts.Player")
 local ball = require("scripts.Ball")
