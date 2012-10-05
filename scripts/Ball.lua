@@ -1,7 +1,7 @@
 module(..., package.seeall)
 
 function newBall(x, y)
-	local entity = display.newCircle(x, y, 5)
+	local entity = display.newRect(x, y, 10, 10)
 	entity:setReferencePoint(display.centerReferencePoint)
 	entity:setFillColor(255, 0, 0)
 	
