@@ -5,7 +5,7 @@ function newPlayer(x, y, w, h)
 	entity:setReferencePoint(display.TopLeftReferencePoint)
 	entity:setFillColor(255)
 	
-	entity.physicsAttributes = { density = 1.0, friction = 0.3, bounce = 0.2 }
+	entity.physicsAttributes = { density = 1.0, friction = 0.0, bounce = 1.0 }
 	
 	return entity
 end
